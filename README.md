@@ -47,6 +47,7 @@ docker-compose up
 Create a superuser:
 
 ```python
-docker-compose run django_project_slug ./manage.py createsuperuser
+docker-compose run django python manage.py createsuperuser
 ```
+
 
