@@ -34,14 +34,6 @@ LOGGING = {
     },
 }
 
-{%- if cookiecutter.use_gc_storage == 'y' %}
-# Google cloud storage
-DEFAULT_FILE_STORAGE = '{{ cookiecutter.project_slug }}.utils.storage.GCMediaStorage'
-STATICFILES_STORAGE = '{{ cookiecutter.project_slug }}.utils.storage.GCStaticStorage'
-
-GS_BUCKET_NAME = env('GS_BUCKET_NAME')
-{%- endif %}
-
 {%- if cookiecutter.use_sentry == 'y' %}
 sentry_sdk.init(
     dsn=env("SENTRY_DSN"),

@@ -16,6 +16,7 @@ COPY ./requirements /requirements
 RUN apk update \
   && apk add --no-cache --virtual .builddeps gcc python3-dev musl-dev postgresql-dev \
   jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev \
+  && pip install pipenv \
   && pip install -r /requirements/${DJANGO_ENV}.txt \
   && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
