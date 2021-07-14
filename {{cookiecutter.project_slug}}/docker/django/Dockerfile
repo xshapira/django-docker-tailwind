@@ -1,4 +1,4 @@
-FROM python:3.7.4-alpine3.9 as base_build
+FROM python:3.9.6-alpine3.14 as base_build
 
 ARG DJANGO_ENV
 
@@ -11,13 +11,13 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
 
 WORKDIR /app
 
-COPY ./requirements /requirements
+COPY ./Pipfile /Pipfile.lock /
 
 RUN apk update \
   && apk add --no-cache --virtual .builddeps gcc python3-dev musl-dev postgresql-dev \
   jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev \
   && pip install pipenv \
-  && pip install -r /requirements/${DJANGO_ENV}.txt \
+  && pipenv install --system --deploy \
   && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
